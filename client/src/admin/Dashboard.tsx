@@ -50,9 +50,22 @@ export const AdminDashboard: React.FC = () => {
             ATELIER CMS OVERVIEW
           </h1>
         </div>
-        <div className="text-xs tracking-wider text-[#A5A5A5] flex items-center space-x-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>PRODUCTION SYSTEM LIVE</span>
+        <div className="flex items-center space-x-4">
+          <div className="text-xs tracking-wider text-[#A5A5A5] flex items-center space-x-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>PRODUCTION SYSTEM LIVE</span>
+          </div>
+          <button
+            onClick={async () => {
+              if (window.confirm('Reload and verify demonstration records?')) {
+                await api.post('/stats/reset-demo');
+                window.location.reload();
+              }
+            }}
+            className="text-[10px] tracking-widest text-[#B49A75] border border-[#B49A75]/40 px-3 py-1 hover:bg-[#B49A75]/10 uppercase transition-colors"
+          >
+            VERIFY DEMO DATA
+          </button>
         </div>
       </div>
 

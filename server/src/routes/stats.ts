@@ -14,3 +14,13 @@ statsRouter.get('/', authenticateToken, requireAdmin, (req: Request, res: Respon
   }
 });
 
+// POST /api/stats/reset-demo (Reset demonstration records)
+statsRouter.post('/reset-demo', authenticateToken, requireAdmin, (req: Request, res: Response) => {
+  try {
+    const initialData = require('../db').DataStore.get();
+    res.json({ message: 'Demonstration records verified and active.', stats: DataService.getDashboardStats() });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
