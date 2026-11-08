@@ -7,7 +7,9 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 
 // Setup data directory and store for local fallback
-const DATA_DIR = path.resolve(__dirname, '../../data');
+const DATA_DIR = fs.existsSync(path.resolve(process.cwd(), 'data'))
+  ? path.resolve(process.cwd(), 'data')
+  : path.resolve(__dirname, '../../data');
 const STORE_FILE = path.join(DATA_DIR, 'store.json');
 
 if (!fs.existsSync(DATA_DIR)) {
